@@ -1,0 +1,22 @@
+Reference,Quantity,Part,Value / Type,Notes
+U1,1,ATtiny85-20P,ATtiny85,DIP-8 or chosen package
+U2 U3,2,74HC595,SN74HC595 or equivalent,Use HC family for 3 V operation; avoid HCT at 3 V
+Q1 Q2 Q3 Q4 Q5 Q6,6,NPN transistor,2SC1815,Low-side row and digit select; verify E=1 C=2 B=3 against footprint
+LED_CURRENT_ARRAY,1 set,Isolated resistor array,8 x 330 ohm,LED bus current limit; do not use common-pin type
+SELECT_BASE_ARRAY,1 set,Isolated resistor array,6 x 4.7k,NPN base resistors; do not use common-pin type
+RN5,1,Bussed resistor array,6 x 100k used,Base pulldowns; common pin to GND
+R1,1,Resistor,10k,ADC ladder pull-up to VCC
+R2,1,Resistor,1.0k,DOWN button ladder branch
+R3,1,Resistor,2.2k,UP button ladder branch
+R4,1,Resistor,4.7k,LEFT button ladder branch
+R5,1,Resistor,10k,FIRE button ladder branch
+C1,1,Capacitor,10 nF,ADC noise filter
+R6,1,Resistor,1k,Buzzer NPN base resistor
+Q7,1,NPN transistor,2SC1815,Buzzer low-side driver; verify E=1 C=2 B=3 against footprint
+BZ1,1,Electromagnetic passive buzzer,9042_16R 3 V,Requires software tone drive
+D4,1,Switching diode,1N4148,Flyback diode across buzzer; cathode/banded end to +3V
+C2 C3 C4,3,Ceramic capacitor,0.1 uF,Decoupling close to U1 U2 and U3 respectively
+C5,1,Electrolytic capacitor,10 uF,Near U2/U3; positive to +3V and negative to GND
+LED_MATRIX,1,LED matrix,5 x 4 discrete LEDs or custom matrix,Column anodes and row cathodes
+U4 U5,2,1-digit 7-segment LED,D16BK,Common cathode; verify actual segment pinout
+SW_RIGHT SW_DOWN SW_UP SW_LEFT SW_FIRE,5,Push button,Normally open,ADC ladder buttons

@@ -1,0 +1,40 @@
+Net,Connection 1,Connection 2,Connection 3,Connection 4,Connection 5,Notes
+VCC,U1 VCC,U2 pin16,U3 pin16,LED/buzzer positive rail,Button pull-up,3 V supply
+GND,U1 GND,U2 pin8,U3 pin8,All NPN emitters,Decoupling negative rail,Common ground
+SHIFT_SER,U1 PB0,U2 pin14 DS,,,,Serial data into first 74HC595
+SHIFT_CLK,U1 PB1,U2 pin11 SHCP,U3 pin11 SHCP,,,Shared shift clock
+SHIFT_LATCH,U1 PB2,U2 pin12 STCP,U3 pin12 STCP,,,Shared latch clock
+U2_TO_U3_SER,U2 pin9 Q7S,U3 pin14 DS,,,,Daisy-chain serial output
+U2_CLEAR,U2 pin10 MR,VCC,,,,Keep shift register enabled
+U3_CLEAR,U3 pin10 MR,VCC,,,,Keep shift register enabled
+U2_OE,U2 pin13 OE,GND,,,,Output enable always active
+U3_OE,U3 pin13 OE,GND,,,,Output enable always active
+BUS0,U2 pin15 QA through 330R isolated array,Matrix COL0 anodes,U4/U5 segment a,,,Active-high LED bus
+BUS1,U2 pin1 QB through 330R isolated array,Matrix COL1 anodes,U4/U5 segment b,,,Active-high LED bus
+BUS2,U2 pin2 QC through 330R isolated array,Matrix COL2 anodes,U4/U5 segment c,,,Active-high LED bus
+BUS3,U2 pin3 QD through 330R isolated array,Matrix COL3 anodes,U4/U5 segment d,,,Active-high LED bus
+BUS4,U2 pin4 QE through 330R isolated array,Matrix COL4 anodes,U4/U5 segment e,,,Active-high LED bus
+BUS5,U2 pin5 QF through 330R isolated array,U4/U5 segment f,,,,Active-high LED bus
+BUS6,U2 pin6 QG through 330R isolated array,U4/U5 segment g,,,,Active-high LED bus
+BUS7,U2 pin7 QH through 330R isolated array,U4/U5 decimal point optional,,,,Optional DP or spare
+BASE0,U3 pin15 QA through 4.7k isolated array,Q1 base,RN5 100k to GND,,,Matrix row 0 select
+BASE1,U3 pin1 QB through 4.7k isolated array,Q2 base,RN5 100k to GND,,,Matrix row 1 select
+BASE2,U3 pin2 QC through 4.7k isolated array,Q3 base,RN5 100k to GND,,,Matrix row 2 select
+BASE3,U3 pin3 QD through 4.7k isolated array,Q4 base,RN5 100k to GND,,,Matrix row 3 select
+DIG0,U3 pin4 QE through 4.7k isolated array,Q5 base,RN5 100k to GND,,,7seg digit 0 select
+DIG1,U3 pin5 QF through 4.7k isolated array,Q6 base,RN5 100k to GND,,,7seg digit 1 select
+ROW0,Q1 collector,Matrix ROW0 cathodes,,,,Low-side sink
+ROW1,Q2 collector,Matrix ROW1 cathodes,,,,Low-side sink
+ROW2,Q3 collector,Matrix ROW2 cathodes,,,,Low-side sink
+ROW3,Q4 collector,Matrix ROW3 cathodes,,,,Low-side sink
+DIG0_CATH,Q5 collector,U4 common cathode (tens digit),,,,Low-side sink
+DIG1_CATH,Q6 collector,U5 common cathode (ones digit),,,,Low-side sink
+BTN_ADC,U1 PB3,R1 10k to VCC,All button left terminals,C1 10nF to GND,,ADC ladder node
+BTN_RIGHT_GND,SW_RIGHT direct,GND,,,,Button ladder branch
+BTN_DOWN_GND,SW_DOWN through R2 1k,GND,,,,Button ladder branch
+BTN_UP_GND,SW_UP through R3 2.2k,GND,,,,Button ladder branch
+BTN_LEFT_GND,SW_LEFT through R4 4.7k,GND,,,,Button ladder branch
+BTN_FIRE_GND,SW_FIRE through R5 10k,GND,,,,Button ladder branch
+BUZZ,U1 PB4 through R6 1k,Q7 base,,,,Tone output
+BUZZER_NEG,Q7 collector,9042_16R pin2,D4 anode,,,Low-side electromagnetic buzzer driver
+BUZZER_POS,9042_16R pin1,VCC,D4 cathode,,,Buzzer positive supply; D4 banded end

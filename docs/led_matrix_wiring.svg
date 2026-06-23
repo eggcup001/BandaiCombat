@@ -1,0 +1,140 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="980" viewBox="0 0 1500 980">
+  <defs>
+    <style>
+      .bg { fill: #fafafa; }
+      .title { font: 700 30px Arial, sans-serif; fill: #202124; }
+      .sub { font: 16px Arial, sans-serif; fill: #555; }
+      .label { font: 16px Arial, sans-serif; fill: #202124; }
+      .mono { font: 15px Consolas, monospace; fill: #202124; }
+      .small { font: 13px Arial, sans-serif; fill: #444; }
+      .box { fill: #fff; stroke: #333; stroke-width: 2; rx: 6; }
+      .u2 { fill: #eef6ff; stroke: #286aa6; stroke-width: 2; }
+      .u3 { fill: #f2f9ec; stroke: #4b7f28; stroke-width: 2; }
+      .bus { stroke: #b5482b; stroke-width: 3; fill: none; }
+      .row { stroke: #286aa6; stroke-width: 3; fill: none; }
+      .ctrl { stroke: #4b7f28; stroke-width: 2.5; fill: none; }
+      .gnd { stroke: #202124; stroke-width: 2; fill: none; }
+      .res { fill: #fff8df; stroke: #8b7218; stroke-width: 2; }
+      .led { fill: #fff; stroke: #202124; stroke-width: 2; }
+      .dot { fill: #202124; }
+      .note { fill: #fff8df; stroke: #8b7218; stroke-width: 2; rx: 5; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="1500" height="980"/>
+  <text class="title" x="55" y="52">5 x 4 LED Matrix Detailed Wiring</text>
+  <text class="sub" x="55" y="82">Column anodes are driven through 330 ohm resistors. Row cathodes are selected by NPN low-side drivers.</text>
+
+  <!-- U2 -->
+  <rect class="u2" x="55" y="145" width="220" height="370" rx="8"/>
+  <text class="label" x="112" y="180">U2 74HC595</text>
+  <text class="mono" x="85" y="240">QA pin15</text>
+  <text class="mono" x="85" y="300">QB pin1</text>
+  <text class="mono" x="85" y="360">QC pin2</text>
+  <text class="mono" x="85" y="420">QD pin3</text>
+  <text class="mono" x="85" y="480">QE pin4</text>
+
+  <!-- Resistors -->
+  <g>
+    <rect class="res" x="315" y="221" width="90" height="28"/><text class="small" x="337" y="241">330R</text>
+    <rect class="res" x="315" y="281" width="90" height="28"/><text class="small" x="337" y="301">330R</text>
+    <rect class="res" x="315" y="341" width="90" height="28"/><text class="small" x="337" y="361">330R</text>
+    <rect class="res" x="315" y="401" width="90" height="28"/><text class="small" x="337" y="421">330R</text>
+    <rect class="res" x="315" y="461" width="90" height="28"/><text class="small" x="337" y="481">330R</text>
+  </g>
+
+  <path class="bus" d="M275 235 H315 M405 235 H500 V735"/>
+  <path class="bus" d="M275 295 H315 M405 295 H650 V735"/>
+  <path class="bus" d="M275 355 H315 M405 355 H800 V735"/>
+  <path class="bus" d="M275 415 H315 M405 415 H950 V735"/>
+  <path class="bus" d="M275 475 H315 M405 475 H1100 V735"/>
+
+  <text class="mono" x="465" y="126">BUS0 / COL0</text>
+  <text class="mono" x="615" y="126">BUS1 / COL1</text>
+  <text class="mono" x="765" y="126">BUS2 / COL2</text>
+  <text class="mono" x="915" y="126">BUS3 / COL3</text>
+  <text class="mono" x="1065" y="126">BUS4 / COL4</text>
+
+  <!-- Matrix LEDs -->
+  <g>
+    <!-- Row 0 -->
+    <circle class="led" cx="500" cy="210" r="18"/><text class="small" x="480" y="188">D00</text>
+    <circle class="led" cx="650" cy="210" r="18"/><text class="small" x="630" y="188">D10</text>
+    <circle class="led" cx="800" cy="210" r="18"/><text class="small" x="780" y="188">D20</text>
+    <circle class="led" cx="950" cy="210" r="18"/><text class="small" x="930" y="188">D30</text>
+    <circle class="led" cx="1100" cy="210" r="18"/><text class="small" x="1080" y="188">D40</text>
+    <!-- Row 1 -->
+    <circle class="led" cx="500" cy="350" r="18"/><text class="small" x="480" y="328">D01</text>
+    <circle class="led" cx="650" cy="350" r="18"/><text class="small" x="630" y="328">D11</text>
+    <circle class="led" cx="800" cy="350" r="18"/><text class="small" x="780" y="328">D21</text>
+    <circle class="led" cx="950" cy="350" r="18"/><text class="small" x="930" y="328">D31</text>
+    <circle class="led" cx="1100" cy="350" r="18"/><text class="small" x="1080" y="328">D41</text>
+    <!-- Row 2 -->
+    <circle class="led" cx="500" cy="490" r="18"/><text class="small" x="480" y="468">D02</text>
+    <circle class="led" cx="650" cy="490" r="18"/><text class="small" x="630" y="468">D12</text>
+    <circle class="led" cx="800" cy="490" r="18"/><text class="small" x="780" y="468">D22</text>
+    <circle class="led" cx="950" cy="490" r="18"/><text class="small" x="930" y="468">D32</text>
+    <circle class="led" cx="1100" cy="490" r="18"/><text class="small" x="1080" y="468">D42</text>
+    <!-- Row 3 -->
+    <circle class="led" cx="500" cy="630" r="18"/><text class="small" x="480" y="608">D03</text>
+    <circle class="led" cx="650" cy="630" r="18"/><text class="small" x="630" y="608">D13</text>
+    <circle class="led" cx="800" cy="630" r="18"/><text class="small" x="780" y="608">D23</text>
+    <circle class="led" cx="950" cy="630" r="18"/><text class="small" x="930" y="608">D33</text>
+    <circle class="led" cx="1100" cy="630" r="18"/><text class="small" x="1080" y="608">D43</text>
+  </g>
+
+  <!-- LED polarity marks -->
+  <g class="small">
+    <text x="487" y="216">A K</text><text x="637" y="216">A K</text><text x="787" y="216">A K</text><text x="937" y="216">A K</text><text x="1087" y="216">A K</text>
+    <text x="487" y="356">A K</text><text x="637" y="356">A K</text><text x="787" y="356">A K</text><text x="937" y="356">A K</text><text x="1087" y="356">A K</text>
+    <text x="487" y="496">A K</text><text x="637" y="496">A K</text><text x="787" y="496">A K</text><text x="937" y="496">A K</text><text x="1087" y="496">A K</text>
+    <text x="487" y="636">A K</text><text x="637" y="636">A K</text><text x="787" y="636">A K</text><text x="937" y="636">A K</text><text x="1087" y="636">A K</text>
+  </g>
+
+  <!-- Row wires -->
+  <path class="row" d="M518 210 H1220"/>
+  <path class="row" d="M518 350 H1220"/>
+  <path class="row" d="M518 490 H1220"/>
+  <path class="row" d="M518 630 H1220"/>
+  <text class="mono" x="1140" y="198">ROW0</text>
+  <text class="mono" x="1140" y="338">ROW1</text>
+  <text class="mono" x="1140" y="478">ROW2</text>
+  <text class="mono" x="1140" y="618">ROW3</text>
+
+  <!-- U3 -->
+  <rect class="u3" x="55" y="630" width="220" height="235" rx="8"/>
+  <text class="label" x="112" y="665">U3 74HC595</text>
+  <text class="mono" x="85" y="715">QA -> ROW0</text>
+  <text class="mono" x="85" y="755">QB -> ROW1</text>
+  <text class="mono" x="85" y="795">QC -> ROW2</text>
+  <text class="mono" x="85" y="835">QD -> ROW3</text>
+
+  <!-- Transistors -->
+  <g>
+    <rect class="box" x="1230" y="175" width="170" height="70"/><text class="mono" x="1250" y="204">Q_ROW0 NPN</text><text class="small" x="1250" y="229">C=ROW0 E=GND</text>
+    <rect class="box" x="1230" y="315" width="170" height="70"/><text class="mono" x="1250" y="344">Q_ROW1 NPN</text><text class="small" x="1250" y="369">C=ROW1 E=GND</text>
+    <rect class="box" x="1230" y="455" width="170" height="70"/><text class="mono" x="1250" y="484">Q_ROW2 NPN</text><text class="small" x="1250" y="509">C=ROW2 E=GND</text>
+    <rect class="box" x="1230" y="595" width="170" height="70"/><text class="mono" x="1250" y="624">Q_ROW3 NPN</text><text class="small" x="1250" y="649">C=ROW3 E=GND</text>
+  </g>
+
+  <path class="ctrl" d="M275 710 H350 V210 H1230"/>
+  <path class="ctrl" d="M275 750 H380 V350 H1230"/>
+  <path class="ctrl" d="M275 790 H410 V490 H1230"/>
+  <path class="ctrl" d="M275 830 H440 V630 H1230"/>
+  <text class="small" x="290" y="700">Each path: U3 output -> 4.7k -> base, 100k base-to-GND</text>
+
+  <!-- Ground -->
+  <path class="gnd" d="M1315 245 V275 M1300 275 H1330 M1305 283 H1325 M1310 291 H1320"/>
+  <path class="gnd" d="M1315 385 V415 M1300 415 H1330 M1305 423 H1325 M1310 431 H1320"/>
+  <path class="gnd" d="M1315 525 V555 M1300 555 H1330 M1305 563 H1325 M1310 571 H1320"/>
+  <path class="gnd" d="M1315 665 V695 M1300 695 H1330 M1305 703 H1325 M1310 711 H1320"/>
+
+  <!-- Notes -->
+  <rect class="note" x="475" y="775" width="835" height="125"/>
+  <text class="label" x="500" y="808">Scan rule</text>
+  <text class="small" x="500" y="840">1. Disable all ROW and DIGIT select outputs.</text>
+  <text class="small" x="500" y="865">2. Shift the five column bits and exactly one row-select bit, then latch.</text>
+  <text class="small" x="500" y="890">3. Never enable two row transistors at the same time.</text>
+
+  <text class="small" x="55" y="945">A = anode, K = cathode. The drawing is a connection map; verify the E/B/C pin order of the selected transistor before PCB layout.</text>
+</svg>

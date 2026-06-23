@@ -1,0 +1,149 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1050" viewBox="0 0 1600 1050">
+  <defs>
+    <style>
+      .bg { fill: #fbfaf7; }
+      .title { font: 700 32px Arial, sans-serif; fill: #202124; }
+      .subtitle { font: 18px Arial, sans-serif; fill: #5f6368; }
+      .box { fill: #fffdf8; stroke: #202124; stroke-width: 2.5; rx: 8; }
+      .soft { fill: #eef6ff; stroke: #2667a8; }
+      .driver { fill: #f4fff0; stroke: #3f7d20; }
+      .load { fill: #fff3f0; stroke: #a84026; }
+      .io { fill: #f8f3ff; stroke: #6c43a3; }
+      .note { fill: #fff9db; stroke: #947600; }
+      .pin { font: 16px Consolas, monospace; fill: #202124; }
+      .label { font: 18px Arial, sans-serif; fill: #202124; }
+      .small { font: 14px Arial, sans-serif; fill: #444; }
+      .mono { font: 15px Consolas, monospace; fill: #202124; }
+      .wire { fill: none; stroke: #2f5d8c; stroke-width: 3; }
+      .wire2 { fill: none; stroke: #387a30; stroke-width: 3; }
+      .wire3 { fill: none; stroke: #9a4e26; stroke-width: 3; }
+      .wire4 { fill: none; stroke: #6c43a3; stroke-width: 3; }
+      .gnd { stroke: #202124; stroke-width: 2; }
+      .dot { fill: #202124; }
+      .res { fill: #fff; stroke: #202124; stroke-width: 2; }
+    </style>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#2f5d8c"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#387a30"/>
+    </marker>
+    <marker id="arrowOrange" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#9a4e26"/>
+    </marker>
+    <marker id="arrowPurple" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#6c43a3"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1600" height="1050"/>
+  <text class="title" x="60" y="58">ATtiny85 Combat Hardware Connection Plan</text>
+  <text class="subtitle" x="60" y="88">RESET/PB5 is kept as reset. No MCU pin is shared between display scan, buttons, and buzzer.</text>
+
+  <!-- MCU -->
+  <rect class="box soft" x="80" y="180" width="290" height="360"/>
+  <text class="label" x="164" y="220">U1 ATtiny85</text>
+  <text class="pin" x="110" y="270">PB0</text><text class="small" x="175" y="270">SER to 74HC595 chain</text>
+  <text class="pin" x="110" y="315">PB1</text><text class="small" x="175" y="315">SRCLK</text>
+  <text class="pin" x="110" y="360">PB2</text><text class="small" x="175" y="360">RCLK / LATCH</text>
+  <text class="pin" x="110" y="405">PB3</text><text class="small" x="175" y="405">ADC buttons</text>
+  <text class="pin" x="110" y="450">PB4</text><text class="small" x="175" y="450">Buzzer</text>
+  <text class="pin" x="110" y="495">PB5</text><text class="small" x="175" y="495">RESET only</text>
+  <text class="pin" x="110" y="530">VCC/GND</text><text class="small" x="210" y="530">3V supply, 0.1uF close to IC</text>
+
+  <!-- Shift registers -->
+  <rect class="box driver" x="520" y="150" width="290" height="250"/>
+  <text class="label" x="590" y="188">U2 74HC595</text>
+  <text class="small" x="575" y="214">segment / column bus</text>
+  <text class="mono" x="550" y="258">QA-QE  -> COL0-COL4</text>
+  <text class="mono" x="550" y="288">QA-QG  -> SEG a-g</text>
+  <text class="mono" x="550" y="318">QH     -> DP or spare</text>
+  <text class="mono" x="550" y="356">QH'    -> U3 SER</text>
+
+  <rect class="box driver" x="520" y="470" width="290" height="260"/>
+  <text class="label" x="590" y="508">U3 74HC595</text>
+  <text class="small" x="565" y="534">row / digit select drivers</text>
+  <text class="mono" x="550" y="578">QA -> ROW0 transistor</text>
+  <text class="mono" x="550" y="608">QB -> ROW1 transistor</text>
+  <text class="mono" x="550" y="638">QC -> ROW2 transistor</text>
+  <text class="mono" x="550" y="668">QD -> ROW3 transistor</text>
+  <text class="mono" x="550" y="698">QE -> U4 digit 0 (tens)</text>
+  <text class="mono" x="550" y="728">QF -> U5 digit 1 (ones)</text>
+
+  <!-- Display loads -->
+  <rect class="box load" x="990" y="135" width="360" height="280"/>
+  <text class="label" x="1084" y="174">5 x 4 LED Matrix</text>
+  <text class="small" x="1030" y="208">Columns share the 8-bit bus from U2.</text>
+  <text class="small" x="1030" y="234">Rows are selected one at a time by U3.</text>
+  <text class="mono" x="1030" y="278">COL0-COL4 <- U2 QA-QE</text>
+  <text class="mono" x="1030" y="308">ROW0-ROW3 <- row transistors</text>
+  <text class="mono" x="1030" y="338">Use one resistor per column line.</text>
+  <text class="mono" x="1030" y="368">Scan: ROW0, ROW1, ROW2, ROW3</text>
+
+  <rect class="box load" x="990" y="500" width="360" height="250"/>
+  <text class="label" x="1078" y="538">2-Digit 7-Segment</text>
+  <text class="small" x="1030" y="572">Same U2 bus is reused as segment bus.</text>
+  <text class="mono" x="1030" y="616">SEG a-g <- U2 QA-QG</text>
+  <text class="mono" x="1030" y="646">DIG0 U4 tens <- U3 QE transistor</text>
+  <text class="mono" x="1030" y="676">DIG1 U5 ones <- U3 QF transistor</text>
+  <text class="mono" x="1030" y="706">Scan after matrix rows.</text>
+
+  <!-- Buttons -->
+  <rect class="box io" x="80" y="660" width="390" height="250"/>
+  <text class="label" x="178" y="698">5 Buttons ADC Ladder</text>
+  <text class="mono" x="115" y="742">PB3/ADC -> ladder node</text>
+  <text class="mono" x="115" y="772">Pull-up: 10k to VCC</text>
+  <text class="mono" x="115" y="802">Buttons to GND via unique resistors</text>
+  <text class="mono" x="115" y="832">Example: 0R, 1k, 2.2k, 4.7k, 10k</text>
+  <text class="small" x="115" y="866">Measure real ADC values and tune thresholds in software.</text>
+
+  <!-- Buzzer -->
+  <rect class="box io" x="520" y="815" width="410" height="150"/>
+  <text class="label" x="625" y="854">Passive Buzzer Driver</text>
+  <text class="mono" x="550" y="894">PB4 -> 1k -> NPN base</text>
+  <text class="mono" x="550" y="924">9042_16R + to VCC, - to collector</text>
+  <text class="mono" x="550" y="954">1N4148 across buzzer; cathode to VCC</text>
+
+  <!-- Power note -->
+  <rect class="box note" x="990" y="815" width="460" height="150"/>
+  <text class="label" x="1090" y="854">Electrical Notes</text>
+  <text class="small" x="1025" y="890">Add 0.1uF decoupling near ATtiny85 and each 74HC595.</text>
+  <text class="small" x="1025" y="918">Add 10uF from +3V to GND near U2/U3.</text>
+  <text class="small" x="1025" y="946">Only one matrix row or 7-seg digit should be enabled at a time.</text>
+
+  <!-- Wires MCU to shift registers -->
+  <path class="wire" d="M370 265 C430 265 460 230 520 230" marker-end="url(#arrowBlue)"/>
+  <text class="mono" x="405" y="252">SER</text>
+  <path class="wire" d="M370 310 C430 310 460 268 520 268" marker-end="url(#arrowBlue)"/>
+  <text class="mono" x="405" y="302">SRCLK</text>
+  <path class="wire" d="M370 355 C430 355 460 306 520 306" marker-end="url(#arrowBlue)"/>
+  <text class="mono" x="405" y="352">RCLK</text>
+
+  <path class="wire" d="M665 400 L665 470" marker-end="url(#arrowBlue)"/>
+  <text class="mono" x="684" y="438">serial chain</text>
+
+  <path class="wire" d="M810 250 C905 250 905 250 990 250" marker-end="url(#arrowBlue)"/>
+  <text class="mono" x="850" y="238">COL/SEG bus</text>
+  <path class="wire2" d="M810 625 C900 625 910 325 990 325" marker-end="url(#arrowGreen)"/>
+  <text class="mono" x="830" y="560">ROW select</text>
+  <path class="wire" d="M810 300 C920 300 920 615 990 615" marker-end="url(#arrowBlue)"/>
+  <text class="mono" x="858" y="686">SEG bus</text>
+  <path class="wire2" d="M810 690 C900 690 910 665 990 665" marker-end="url(#arrowGreen)"/>
+  <text class="mono" x="835" y="724">DIG select</text>
+
+  <!-- ADC and buzzer wires -->
+  <path class="wire4" d="M370 400 C420 400 425 735 470 735" marker-end="url(#arrowPurple)"/>
+  <text class="mono" x="395" y="432">ADC</text>
+  <path class="wire3" d="M370 445 C445 445 455 890 520 890" marker-end="url(#arrowOrange)"/>
+  <text class="mono" x="395" y="476">TONE</text>
+
+  <!-- Simple representative resistor/transistor icons -->
+  <rect class="res" x="1120" y="395" width="80" height="24"/>
+  <text class="small" x="1112" y="435">column resistors</text>
+  <rect class="res" x="1200" y="730" width="80" height="24"/>
+  <text class="small" x="1180" y="772">segment resistors</text>
+
+  <!-- Scan order -->
+  <rect class="box note" x="80" y="950" width="1390" height="60"/>
+  <text class="small" x="110" y="986">Recommended scan order in software: disable all selects, shift U2 bus + U3 select bits, latch, enable exactly one row/digit phase. Phases: M_ROW0, M_ROW1, M_ROW2, M_ROW3, SEG0, SEG1.</text>
+</svg>
