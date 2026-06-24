@@ -1,0 +1,98 @@
+
+(rules PCB BandaiCombat.dsn
+  (snap_angle 
+    fortyfive_degree
+  )
+  (rule
+    (width 200.0)
+    (clearance 200.0)
+    (clearance 100.0 (type smd_to_turn_gap))
+    (clearance 50.0 (type smd))
+    (clearance 200.0 (type "kicad_default"))
+    (clearance 200.0 (type VCC))
+    (clearance 200.0 (type GND))
+  )
+  (padstack "Via[0-1]_600:300_um"
+    (shape
+      (circle F.Cu 600.0 0.0 0.0)
+    )
+    (shape
+      (circle B.Cu 600.0 0.0 0.0)
+    )
+    (attach off)
+  )
+  (via 
+    "Via[0-1]_600:300_um" "Via[0-1]_600:300_um" default
+  )
+  (via 
+    "Via[0-1]_600:300_um-kicad_default" "Via[0-1]_600:300_um" "kicad_default"
+  )
+  (via 
+    "Via[0-1]_600:300_um-VCC" "Via[0-1]_600:300_um" VCC
+  )
+  (via 
+    "Via[0-1]_600:300_um-GND" "Via[0-1]_600:300_um" GND
+  )
+  (via_rule
+    default "Via[0-1]_600:300_um"
+  )
+  (via_rule
+    "kicad_default" "Via[0-1]_600:300_um-kicad_default"
+  )
+  (via_rule
+    VCC "Via[0-1]_600:300_um-VCC"
+  )
+  (via_rule
+    GND "Via[0-1]_600:300_um-GND"
+  )
+  (class default
+    (clearance_class default)
+    (via_rule default)
+    (rule
+      (width 200.0)
+    )
+    (circuit 
+      (use_layer F.Cu B.Cu)
+    )
+  )
+  (class "kicad_default"
+    "Net-(RN2-R1.1)" "Net-(RN2-R2.1)" "Net-(RN2-R3.1)" "Net-(RN2-R4.1)" /BUS7 /BUS6 /BUS5 /BUS4
+    "Net-(R5-Pad1)" /ROW2 /BUS1 "/BTN_ADC" "Net-(R2-Pad1)" /BASE2 "Net-(9042_16R1--)" "Net-(RN4-R1.1)"
+    "Net-(RN4-R2.1)" "unconnected-(RN4-R3.1-Pad3)" "unconnected-(RN4-R4.1-Pad4)" "unconnected-(RN4-R4.2-Pad5)" "unconnected-(RN4-R3.2-Pad6)" /DIG1 /DIG0 "Net-(U1-XTAL2{slash}PB4)"
+    /BUZZ /BUS3 "/DIG1_CATH" /BUS2 /BUS0 /ROW1 /BASE1 "Net-(R3-Pad1)"
+    /ROW0 /BASE0 /ROW3 /BASE3 "/DIG0_CATH" "Net-(BT1-+)" "unconnected-(U1-~{RESET}{slash}PB5-Pad1)" /SER
+    /CLK /LATCH "Net-(RN3-R1.1)" "Net-(RN3-R2.1)" "Net-(RN3-R3.1)" "Net-(RN3-R4.1)" "Net-(R4-Pad1)" "unconnected-(RN5-R1-Pad2)"
+    "unconnected-(RN5-R2-Pad3)" "Net-(RN1-R1.1)" "Net-(RN1-R2.1)" "Net-(RN1-R3.1)" "Net-(RN1-R4.1)" "/DS_SER" "unconnected-(U3-QG-Pad6)" "unconnected-(U3-QH-Pad7)"
+    "unconnected-(U3-QH'-Pad9)"
+    (clearance_class "kicad_default")
+    (via_rule "kicad_default")
+    (rule
+      (width 200.0)
+    )
+    (circuit 
+      (use_layer F.Cu B.Cu)
+    )
+  )
+  (class VCC
+    +3V0
+    (clearance_class VCC)
+    (via_rule VCC)
+    (rule
+      (width 500.0)
+    )
+    (circuit 
+      (use_layer F.Cu B.Cu)
+    )
+  )
+  (class GND
+    GND
+    (clearance_class GND)
+    (via_rule GND)
+    (rule
+      (width 500.0)
+    )
+    (circuit 
+      (use_layer F.Cu B.Cu)
+    )
+  )
+)
