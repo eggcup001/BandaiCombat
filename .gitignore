@@ -21,3 +21,8 @@ Desktop.ini
 
 # Ignore embedded Git backups created during submodule cleanup
 firmware/.git-embedded-backup/
+
+archive/
+*.zip
+*.7z
+*.rar
